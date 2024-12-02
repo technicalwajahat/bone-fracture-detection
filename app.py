@@ -1,8 +1,4 @@
-# import numpy as np
-# from PIL import Image
 from flask import Flask, render_template
-
-# from tensorflow.keras.models import load_model
 
 # Initialize Flask app
 app = Flask(__name__)
