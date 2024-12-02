@@ -1,0 +1,7 @@
+# Ignore Files
+
+node_modules/
+BoneFracture_data/
+venv/
+model/
+.idea/
