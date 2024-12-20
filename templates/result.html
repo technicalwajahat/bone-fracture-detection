@@ -22,22 +22,22 @@
         class="flex grow flex-col items-center justify-center bg-neutral-900 p-10 text-white"
 >
     <!-- Two Columns for Images -->
-    <div class="mb-12 flex w-full flex-wrap justify-center gap-8">
+    <div class="mb-12 flex flex-wrap justify-center gap-8">
         <!-- Uploaded Image -->
-        <div class="w-full text-center md:w-1/2 lg:w-2/5">
+        <div class="text-center">
             <h2 class="mb-4 text-2xl font-bold">Uploaded Image</h2>
             <img
-                    class="mx-auto w-full max-w-sm rounded-lg border-4 border-sky-800"
+                    class="max-w-md rounded-lg border-4 border-sky-800"
                     src="{{ url_for('static', filename=uploaded_image) }}"
                     alt="Uploaded Image"
             />
         </div>
 
         <!-- Result Image -->
-        <div class="w-full text-center md:w-1/2 lg:w-2/5">
+        <div class="text-center">
             <h2 class="mb-4 text-2xl font-bold">Result Image</h2>
             <img
-                    class="mx-auto w-full max-w-sm rounded-lg border-4 border-sky-800"
+                    class="max-w-md rounded-lg border-4 border-sky-800"
                     src="{{ url_for('static', filename=result_image) }}"
                     alt="Result Image"
             />
