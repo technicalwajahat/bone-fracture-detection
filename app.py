@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, render_template, redirect, url_for
+from flask import Flask, request, render_template
 from tensorflow.keras.models import load_model
 from PIL import Image
 import numpy as np
@@ -32,7 +32,7 @@ def preprocess_image(image_path):
     return np.expand_dims(img_array, axis=0)
 
 
-# Index Function and Call the Template
+# Index function and call the templates
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
@@ -70,7 +70,9 @@ def index():
         result_path = os.path.join(app.config['RESULT_FOLDER'], file.filename)
         cv2.imwrite(result_path, image)
 
-        return render_template('index.html', uploaded_image=filepath, result_image=result_path, label=label)
+        return render_template('result.html', uploaded_image=f'uploaded/{file.filename}',
+                               result_image=f'results/{file.filename}', label=label)
+    return render_template('index.html')
 
 
 if __name__ == "__main__":

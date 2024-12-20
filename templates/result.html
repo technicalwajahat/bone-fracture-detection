@@ -1,27 +1,59 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <!-- HTML Head -->
+  <head>
+    <meta charset="UTF-8" />
+    <title>Bone Fracture Detection Result</title>
+    <link
+      href="{{ url_for('static', filename='css/output.css') }}"
+      rel="stylesheet"
+    />
+  </head>
 
-<!-- HTML Head -->
-<head>
-    <meta charset="UTF-8">
-    <title>Result :: Bone Fracture Detection</title>
-    <link href="{{url_for('static',filename='css/output.css')}}" rel="stylesheet"/>
-</head>
+  <!-- HTML Body -->
+  <body class="flex h-screen flex-col font-parkinsans">
+    <!-- Header -->
+    <header class="flex-none bg-neutral-950 p-5 text-center">
+      <h1 class="text-4xl font-bold text-white">Bone Fracture Detection</h1>
+    </header>
 
-<!-- HTML Body -->
-<body class="flex h-screen flex-col font-parkinsans">
-<!-- Header -->
-<header class="flex-none bg-neutral-950 p-5 text-center">
-    <h1 class="text-4xl font-bold text-white">Bone Fracture Detection</h1>
-</header>
+    <!-- Main Content -->
+    <main
+      class="flex grow flex-col items-center justify-center bg-neutral-900 p-10 text-white"
+    >
+      <!-- Two Columns for Images -->
+      <div class="mb-12 flex w-full flex-wrap justify-center gap-8">
+        <!-- Uploaded Image -->
+        <div class="w-full text-center md:w-1/2 lg:w-2/5">
+          <h2 class="mb-4 text-2xl font-bold">Uploaded Image</h2>
+          <img
+            class="mx-auto w-full max-w-sm rounded-lg border-4 border-sky-800"
+            src="{{ url_for('static', filename=uploaded_image) }}"
+            alt="Uploaded Image"
+          />
+        </div>
 
-<!-- Main Content -->
-<main class="flex grow flex-col items-center justify-center bg-neutral-900 text-white">
-</main>
+        <!-- Result Image -->
+        <div class="w-full text-center md:w-1/2 lg:w-2/5">
+          <h2 class="mb-4 text-2xl font-bold">Result Image</h2>
+          <img
+            class="mx-auto w-full max-w-sm rounded-lg border-4 border-sky-800"
+            src="{{ url_for('static', filename=result_image) }}"
+            alt="Result Image"
+          />
+        </div>
+      </div>
 
-<!-- Footer -->
-<footer class="flex-none bg-neutral-950 p-5 text-center text-white">
-    <p>&copy; 2024 Bone Fracture Detection. All rights reserved.</p>
-</footer>
-</body>
+      <!-- Prediction Result -->
+      <div class="text-center">
+        <h2 class="mb-2 text-2xl font-bold">Prediction</h2>
+        <p class="text-base">{{ label }}</p>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="flex-none bg-neutral-950 p-5 text-center text-white">
+      <p>&copy; 2024 Bone Fracture Detection. All rights reserved.</p>
+    </footer>
+  </body>
 </html>
