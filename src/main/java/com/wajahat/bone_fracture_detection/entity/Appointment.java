@@ -15,7 +15,9 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "appointments")
-@Getter @Setter @NoArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
 public class Appointment {
 
     @Id

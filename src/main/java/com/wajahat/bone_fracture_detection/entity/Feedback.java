@@ -13,7 +13,9 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "feedback")
-@Getter @Setter @NoArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
 public class Feedback {
 
     @Id

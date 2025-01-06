@@ -13,7 +13,9 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "patients")
-@Getter @Setter @NoArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
 public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
