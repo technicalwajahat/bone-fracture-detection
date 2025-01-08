@@ -1,6 +1,5 @@
 package com.wajahat.bone_fracture_detection.entity;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
