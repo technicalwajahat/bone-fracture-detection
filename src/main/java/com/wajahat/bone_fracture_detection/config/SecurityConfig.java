@@ -28,8 +28,8 @@ public class SecurityConfig {
         httpSecurity
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(requests -> requests
-                        .requestMatchers("/", "/css/**", "/js/**", "/images/**").permitAll()
-                        .anyRequest().authenticated())
+                        .requestMatchers("/", "/css/**", "/js/**", "/images/**").permitAll().anyRequest()
+                        .authenticated())
                 .formLogin(form -> form
                         .loginPage("/login")
                         .loginProcessingUrl("/login")
