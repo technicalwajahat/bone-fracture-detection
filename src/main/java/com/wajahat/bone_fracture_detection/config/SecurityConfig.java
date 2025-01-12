@@ -33,6 +33,7 @@ public class SecurityConfig {
                 .formLogin(form -> form
                         .loginPage("/login")
                         .loginProcessingUrl("/login")
+                        .defaultSuccessUrl("/")
                         .permitAll());
 
         return httpSecurity.build();
