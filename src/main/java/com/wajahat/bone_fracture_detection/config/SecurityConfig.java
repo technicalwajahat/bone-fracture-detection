@@ -28,11 +28,11 @@ public class SecurityConfig {
         httpSecurity
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(requests -> requests
-                        .requestMatchers("/register", "/css/**", "/js/**", "/images/**").permitAll().anyRequest()
+                        .requestMatchers("/user/register", "/css/**", "/js/**", "/images/**").permitAll().anyRequest()
                         .authenticated())
                 .formLogin(form -> form
                         .loginPage("/login")
-                        .loginProcessingUrl("/login")
+                        .loginProcessingUrl("/user/login")
                         .defaultSuccessUrl("/")
                         .permitAll());
 

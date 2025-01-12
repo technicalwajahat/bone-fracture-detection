@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Register :: Bone Fracture Detection</title>
-    <link th:href="@{css/output.css}" rel="stylesheet" />
+    <link th:href="@{/css/output.css}" rel="stylesheet" />
 </head>
 
 <body class="bg-slate-200">
@@ -84,7 +84,7 @@
                     <div class="mt-4 flex items-center font-medium text-sm justify-center text-center">
                         <p>
                             Already have an account?
-                            <a th:href="@{/login}" class="text-blue-500 hover:underline">Login</a>
+                            <a th:href="@{/user/login}" class="text-blue-500 hover:underline">Login</a>
                         </p>
                     </div>
                 </form>
@@ -92,7 +92,7 @@
         </div>
     </div>
 
-    <script th:src="@{js/script.js}"></script>
+    <script th:src="@{/js/script.js}"></script>
 </body>
 
 </html>
