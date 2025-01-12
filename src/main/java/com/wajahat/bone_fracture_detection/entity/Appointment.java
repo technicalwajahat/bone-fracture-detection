@@ -13,10 +13,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "appointments")
 @Getter
+@ToString
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
@@ -27,12 +29,8 @@ public class Appointment {
     private Long Id;
 
     @ManyToOne
-    @JoinColumn(name = "doctor_id")
-    private Doctor doctor;
-
-    @ManyToOne
-    @JoinColumn(name = "patient_id")
-    private Patient patient;
+    @JoinColumn(name = "user_id")
+    private Users users;
 
     private LocalDateTime appointmentDate;
 }

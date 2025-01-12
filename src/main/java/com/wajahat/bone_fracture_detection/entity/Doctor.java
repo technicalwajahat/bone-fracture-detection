@@ -11,15 +11,17 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "doctors")
 @Getter
+@ToString
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Doctor {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
@@ -27,6 +29,4 @@ public class Doctor {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private Users user;
-
-    private String specialization;
 }

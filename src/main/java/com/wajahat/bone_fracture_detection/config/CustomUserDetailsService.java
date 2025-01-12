@@ -2,6 +2,7 @@ package com.wajahat.bone_fracture_detection.config;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -23,16 +24,19 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        Users user = userRepository.findByUsername(username);
+        Optional<Users> user = userRepository.findByUsername(username);
 
-        if (user == null) {
-            throw new UsernameNotFoundException("Username or Password not found");
-        }
+        CustomUserDetails userDetails = user.map(u -> new CustomUserDetails(
+                u.getUsername(),
+                u.getPassword(),
+                authorities(),
+                u.getName()))
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
 
-        return new CustomUserDetails(user.getUsername(), user.getPassword(), authorities(), user.getName());
+        return userDetails;
     }
 
     public Collection<? extends GrantedAuthority> authorities() {
-        return Arrays.asList(new SimpleGrantedAuthority("USER"));
+        return Arrays.asList(new SimpleGrantedAuthority("1"));
     }
 }
