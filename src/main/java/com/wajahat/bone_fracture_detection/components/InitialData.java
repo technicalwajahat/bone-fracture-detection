@@ -2,20 +2,28 @@ package com.wajahat.bone_fracture_detection.components;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.wajahat.bone_fracture_detection.entity.Role;
 import com.wajahat.bone_fracture_detection.repository.RoleRepository;
 
+@Component
 public class InitialData implements CommandLineRunner {
 
     @Autowired
     private RoleRepository roleRepository;
 
     @Override
+    @Transactional
     public void run(String... args) throws Exception {
-        roleRepository.save(new Role(1L, "doctor"));
-        roleRepository.save(new Role(2L, "patient"));
-
-        System.out.println("DATA Added Role Based");
+        try {
+            roleRepository.save(new Role(null, "doctor"));
+            roleRepository.save(new Role(null, "patient"));
+            System.out.println("DATA Added Role Based");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Error occurred while adding initial data: " + e.getMessage());
+        }
     }
 }
