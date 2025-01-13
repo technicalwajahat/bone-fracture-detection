@@ -18,12 +18,17 @@ public class InitialData implements CommandLineRunner {
     @Transactional
     public void run(String... args) throws Exception {
         try {
-            roleRepository.save(new Role(null, "doctor"));
-            roleRepository.save(new Role(null, "patient"));
-            System.out.println("DATA Added Role Based");
+            addRoleIfNotExists("doctor");
+            addRoleIfNotExists("patient");
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println("Error occurred while adding initial data: " + e.getMessage());
+        }
+    }
+
+    private void addRoleIfNotExists(String roleName) {
+        if (roleRepository.findByRoleName(roleName) == null) {
+            roleRepository.save(new Role(null, roleName));
         }
     }
 }
