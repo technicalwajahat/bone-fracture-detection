@@ -14,7 +14,7 @@ import com.wajahat.bone_fracture_detection.service.UserService;
 public class AuthController {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @PostMapping("/saveUser")
     public String createUser(@ModelAttribute Users user) {

@@ -1,9 +1,6 @@
 package com.wajahat.bone_fracture_detection.service.serviceImplementation;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.wajahat.bone_fracture_detection.entity.Doctor;
@@ -18,10 +15,7 @@ import com.wajahat.bone_fracture_detection.service.UserService;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    UserRepository userRepository;
-
-    @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
+    private UserRepository userRepository;
 
     @Autowired
     private PatientRepository patientRepository;
@@ -32,12 +26,20 @@ public class UserServiceImpl implements UserService {
     @Override
     public Users saveUser(Users user) {
 
-        String password = passwordEncoder.encode(user.getPassword());
-        user.setPassword(password);
+        // String password = passwordEncoder.encode(user.getPassword());
+        // user.setPassword(password);
 
+        /**
+         * Save User to DB
+         */
         Users newUser = userRepository.save(user);
 
-        if (newUser.getRole().equals("1")) {
+        String userRole = String.valueOf(newUser.getRole());
+
+        /**
+         * Save Patient or Doctor to DB
+         */
+        if (userRole.equals("1")) {
             Doctor doctor = new Doctor();
             doctor.setUser(newUser);
             doctorRepository.save(doctor);
@@ -48,10 +50,5 @@ public class UserServiceImpl implements UserService {
         }
 
         return newUser;
-    }
-
-    @Override
-    public List<Users> getAllUsers() {
-        throw new UnsupportedOperationException("Unimplemented method 'getAllUsers'");
     }
 }

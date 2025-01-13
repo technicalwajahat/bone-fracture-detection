@@ -14,12 +14,19 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Autowired
-    CustomUserDetailsService customUserDetailsService;
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public CustomUserDetailsService getCustomUserDetailsService() {
+        return new CustomUserDetailsService();
+    }
+
+    @Autowired
+    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(getCustomUserDetailsService()).passwordEncoder(passwordEncoder());
     }
 
     @Bean
@@ -37,10 +44,5 @@ public class SecurityConfig {
                         .permitAll());
 
         return httpSecurity.build();
-    }
-
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
     }
 }
