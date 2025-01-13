@@ -1,6 +1,7 @@
 package com.wajahat.bone_fracture_detection.service.serviceImplementation;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.wajahat.bone_fracture_detection.entity.Doctor;
@@ -23,17 +24,25 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private DoctorRepository doctorRepository;
 
+    private BCryptPasswordEncoder passwordEncoder;
+
+    public UserServiceImpl() {
+        this.passwordEncoder = new BCryptPasswordEncoder();
+    }
+
     @Override
     public Users saveUser(Users user) {
 
-        // String password = passwordEncoder.encode(user.getPassword());
-        // user.setPassword(password);
+        /**
+         * Password Encoder
+         */
+        String password = this.passwordEncoder.encode(user.getPassword());
+        user.setPassword(password);
 
         /**
          * Save User to DB
          */
         Users newUser = userRepository.save(user);
-
         String userRole = String.valueOf(newUser.getRole());
 
         /**

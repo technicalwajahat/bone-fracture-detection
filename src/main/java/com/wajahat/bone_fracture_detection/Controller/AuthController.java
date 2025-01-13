@@ -20,6 +20,6 @@ public class AuthController {
     public String createUser(@ModelAttribute Users user) {
         userService.saveUser(user);
 
-        return "redirect:auth/register";
+        return "redirect:auth/login";
     }
 }

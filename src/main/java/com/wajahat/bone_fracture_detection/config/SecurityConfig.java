@@ -10,23 +10,16 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-@Configuration
 @EnableWebSecurity
+@Configuration
 public class SecurityConfig {
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    public CustomUserDetailsService getCustomUserDetailsService() {
-        return new CustomUserDetailsService();
-    }
-
     @Autowired
-    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(getCustomUserDetailsService()).passwordEncoder(passwordEncoder());
+    CustomUserDetailsService customUserDetailsService;
+
+    @Bean
+    public static PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
     @Bean
@@ -35,14 +28,18 @@ public class SecurityConfig {
         httpSecurity
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(requests -> requests
-                        .requestMatchers("/user/*", "/css/**", "/js/**", "/images/**").permitAll().anyRequest()
+                        .requestMatchers("/user/**", "/css/**", "/js/**", "/images/**").permitAll().anyRequest()
                         .authenticated())
                 .formLogin(form -> form
                         .loginPage("/login")
-                        .loginProcessingUrl("/user/login")
-                        .defaultSuccessUrl("/")
+                        .loginProcessingUrl("/login")
                         .permitAll());
 
         return httpSecurity.build();
+    }
+
+    @Autowired
+    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
     }
 }
