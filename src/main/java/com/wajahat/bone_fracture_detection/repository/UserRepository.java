@@ -9,4 +9,8 @@ import com.wajahat.bone_fracture_detection.entity.Users;
 public interface UserRepository extends JpaRepository<Users, Long> {
 
     Optional<Users> findByUsername(String username);
+
+    boolean existsByEmail(String email);
+
+    boolean existsByUsername(String username);
 }

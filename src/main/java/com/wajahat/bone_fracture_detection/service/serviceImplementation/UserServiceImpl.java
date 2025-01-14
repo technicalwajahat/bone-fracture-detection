@@ -31,9 +31,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Users saveUser(Users user) {
+    public boolean isEmailTaken(String email) {
+        return userRepository.existsByEmail(email);
+    }
 
-        System.out.println(user);
+    @Override
+    public boolean isUsernameTaken(String username) {
+        return userRepository.existsByUsername(username);
+    }
+
+    @Override
+    public Users saveUser(Users user) {
 
         /**
          * Password Encoder
