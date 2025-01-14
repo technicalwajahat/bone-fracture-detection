@@ -33,8 +33,14 @@ public class SecurityConfig {
                         .requestMatchers("/user/**", "/css/**", "/js/**", "/images/**").permitAll().anyRequest()
                         .authenticated())
                 .formLogin(form -> form
-                        .loginPage("/login")
-                        .loginProcessingUrl("/login")
+                        .loginPage("/user/login")
+                        .loginProcessingUrl("/user/login")
+                        .defaultSuccessUrl("/user/register", true)
+                        .failureUrl("/user/login?error")
+                        .permitAll())
+                .logout(logout -> logout
+                        .logoutUrl("/user/logout")
+                        .logoutSuccessUrl("/user/login?logout")
                         .permitAll());
 
         return httpSecurity.build();
