@@ -33,6 +33,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public Users saveUser(Users user) {
 
+        System.out.println(user);
+
         /**
          * Password Encoder
          */
@@ -43,10 +45,10 @@ public class UserServiceImpl implements UserService {
          * Save User to DB
          */
         Users newUser = userRepository.save(user);
-        String userRole = String.valueOf(newUser.getRole());
+        String userRole = String.valueOf(newUser.getRole().getId());
 
         /**
-         * Save Patient or Doctor to DB
+         * Save Patient or Doctor to thier Table
          */
         if (userRole.equals("1")) {
             Doctor doctor = new Doctor();

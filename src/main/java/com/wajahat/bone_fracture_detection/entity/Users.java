@@ -1,12 +1,11 @@
 package com.wajahat.bone_fracture_detection.entity;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,19 +30,22 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Name is mandatory")
+    @NotNull
     private String name;
 
+    @NotNull
+    @Column(unique = true)
     private String username;
 
     @NotNull
     @Email
+    @Column(unique = true)
     private String email;
 
     @NotNull
-    @Size(min = 8, message = "Password must be at least 8 characters long")
     private String password;
 
+    @NotNull
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "role_id")
     private Role role;
