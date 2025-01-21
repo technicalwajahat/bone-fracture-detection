@@ -22,11 +22,13 @@ public class AuthController {
     @GetMapping("/user/register")
     public String showRegistrationForm(Model model) {
         model.addAttribute("user", new Users());
+        model.addAttribute("title", "Register");
         return "auth/register";
     }
 
     @GetMapping("/user/login")
-    public String showLoginForm() {
+    public String showLoginForm(Model model) {
+        model.addAttribute("title", "Login");
         return "auth/login";
     }
 

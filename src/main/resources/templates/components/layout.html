@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
+<head th:replace="~{components/head :: head}"></head>
+
+<body class="bg-gray-100">
+    <div class="flex">
+        <div th:replace="~{components/sidebar :: sidebar}"></div>
+        <div class="flex-1 p-6">
+            <div th:replace="${content}"></div>
+            <footer th:replace="~{components/footer :: footer}"></footer>
+        </div>
+    </div>
+</body>
+
+</html>
