@@ -7,6 +7,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -32,8 +33,9 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(requests -> requests
                         .requestMatchers("/user/**", "/css/**", "/js/**", "/images/**").permitAll()
-                        .anyRequest()
-                        .authenticated())
+                        .requestMatchers("/doctor/**").hasAuthority("ROLE_DOCTOR")
+                        .requestMatchers("/patient/**").hasAuthority("ROLE_PATIENT")
+                        .anyRequest().authenticated())
                 .formLogin(form -> form
                         .loginPage("/user/login")
                         .loginProcessingUrl("/user/login")
@@ -60,4 +62,5 @@ public class SecurityConfig {
     public AuthenticationSuccessHandler customSuccessHandler() {
         return new CustomAuthenticationSuccessHandler();
     }
+
 }

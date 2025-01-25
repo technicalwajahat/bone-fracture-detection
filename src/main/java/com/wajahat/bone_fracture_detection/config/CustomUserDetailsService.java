@@ -21,6 +21,8 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 
+    private static final String ROLE_PREFIX = "ROLE_";
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
@@ -37,8 +39,8 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     private Collection<? extends GrantedAuthority> authorities(Users user) {
-        String rolePrefix = "ROLE_";
-        String role = user.getRole().getId().equals("1") ? rolePrefix + "PATIENT" : rolePrefix + "DOCTOR";
+        String role = user.getRole().getId().equals("1") ? ROLE_PREFIX + "PATIENT" : ROLE_PREFIX + "DOCTOR";
+        System.out.println(role);
         return Collections.singletonList(new SimpleGrantedAuthority(role));
     }
 }

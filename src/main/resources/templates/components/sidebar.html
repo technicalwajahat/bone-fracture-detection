@@ -2,7 +2,7 @@
 <div class="w-1/4 bg-gray-800 text-white p-4" th:fragment="sidebar">
     <nav>
         <ul>
-            <li th:if="${role == '1'}">
+            <li th:if="${role == 'ROLE_PATIENT'}">
                 <a href="/patient/doctors" class="block py-2">Doctors</a>
                 <a href="/patient/appointments" class="block py-2">Appointments</a>
                 <a href="/patient/results" class="block py-2">Results</a>
@@ -10,7 +10,7 @@
                 <a href="/patient/profile" class="block py-2">My Profile</a>
                 <a href="/user/login?logout" class="block py-2">Logout</a>
             </li>
-            <li th:if="${role == '2'}">
+            <li th:if="${role == 'ROLE_DOCTOR'}">
                 <a href="/doctor/patients" class="block py-2">Patients</a>
                 <a href="/doctor/appointments" class="block py-2">Appointments</a>
                 <a href="/doctor/profile" class="block py-2">My Profile</a>

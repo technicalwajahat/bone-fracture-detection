@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.wajahat.bone_fracture_detection.entity.Users;
 import com.wajahat.bone_fracture_detection.service.UserService;
@@ -14,25 +15,26 @@ import com.wajahat.bone_fracture_detection.service.UserService;
 import jakarta.validation.Valid;
 
 @Controller
+@RequestMapping("/user")
 public class AuthController {
 
     @Autowired
     private UserService userService;
 
-    @GetMapping("/user/register")
+    @GetMapping("/register")
     public String showRegistrationForm(Model model) {
         model.addAttribute("user", new Users());
         model.addAttribute("title", "Register");
         return "auth/register";
     }
 
-    @GetMapping("/user/login")
+    @GetMapping("/login")
     public String showLoginForm(Model model) {
         model.addAttribute("title", "Login");
         return "auth/login";
     }
 
-    @PostMapping("/user/saveUser")
+    @PostMapping("/saveUser")
     public String createUser(@ModelAttribute("user") @Valid Users user, BindingResult bindingResult, Model model) {
 
         // Check if the username is already taken

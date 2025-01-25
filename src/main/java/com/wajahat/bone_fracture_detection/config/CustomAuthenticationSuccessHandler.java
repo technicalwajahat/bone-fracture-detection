@@ -1,6 +1,7 @@
 package com.wajahat.bone_fracture_detection.config;
 
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,16 +13,18 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
             Authentication authentication) throws IOException, ServletException {
-        String role = authentication.getAuthorities().toString();
-
-        System.out.println("Role: " + role);
-
-        if (role.contains("ROLE_DOCTOR")) {
-            response.sendRedirect("/doctor/dashboard");
-        } else if (role.contains("ROLE_PATIENT")) {
-            response.sendRedirect("/patient/dashboard");
-        } else {
-            response.sendRedirect("/user/login");
+        for (GrantedAuthority authority : authentication.getAuthorities()) {
+            String role = authority.getAuthority();
+            if ("ROLE_DOCTOR".equals(role)) {
+                response.sendRedirect("/doctor/");
+                return;
+            }
+            if ("ROLE_PATIENT".equals(role)) {
+                response.sendRedirect("/patient/");
+                return;
+            }
         }
+
+        response.sendRedirect("/user/login");
     }
 }
