@@ -1,7 +1,7 @@
 package com.wajahat.bone_fracture_detection.config;
 
-import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,14 +29,16 @@ public class CustomUserDetailsService implements UserDetailsService {
         CustomUserDetails userDetails = user.map(u -> new CustomUserDetails(
                 u.getUsername(),
                 u.getPassword(),
-                authorities(),
+                authorities(u),
                 u.getName()))
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
 
         return userDetails;
     }
 
-    public Collection<? extends GrantedAuthority> authorities() {
-        return Arrays.asList(new SimpleGrantedAuthority("1"));
+    private Collection<? extends GrantedAuthority> authorities(Users user) {
+        String rolePrefix = "ROLE_";
+        String role = user.getRole().getId().equals("1") ? rolePrefix + "PATIENT" : rolePrefix + "DOCTOR";
+        return Collections.singletonList(new SimpleGrantedAuthority(role));
     }
 }

@@ -18,8 +18,8 @@ public class InitialData implements CommandLineRunner {
     @Transactional
     public void run(String... args) throws Exception {
         try {
-            addRoleIfNotExists("doctor");
-            addRoleIfNotExists("patient");
+            addRoleIfNotExists("ROLE_DOCTOR");
+            addRoleIfNotExists("ROLE_PATIENT");
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println("Error occurred while adding initial data: " + e.getMessage());

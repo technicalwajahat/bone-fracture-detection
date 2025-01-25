@@ -32,7 +32,6 @@ public class AuthController {
         return "auth/login";
     }
 
-
     @PostMapping("/user/saveUser")
     public String createUser(@ModelAttribute("user") @Valid Users user, BindingResult bindingResult, Model model) {
 
