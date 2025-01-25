@@ -39,8 +39,8 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     private Collection<? extends GrantedAuthority> authorities(Users user) {
+        @SuppressWarnings("unlikely-arg-type")
         String role = user.getRole().getId().equals("1") ? ROLE_PREFIX + "PATIENT" : ROLE_PREFIX + "DOCTOR";
-        System.out.println(role);
         return Collections.singletonList(new SimpleGrantedAuthority(role));
     }
 }
