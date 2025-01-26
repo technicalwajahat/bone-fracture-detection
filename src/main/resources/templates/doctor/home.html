@@ -1,13 +1,20 @@
+<html>
+
 <head th:replace="~{components/head :: head}"></head>
 
 <body class="bg-slate-300 font-parkinsans">
     <div class="flex flex-col min-h-screen">
         <div class="flex flex-grow">
             <div th:replace="~{components/sidebar :: sidebar}"></div>
-            <div class="w-4/5">
-                <div class="p-6">
-                    <h1 class="text-2xl font-bold mb-4">Doctor Dashboard</h1>
-                    <p>Welcome to the Doctor's Dashboard!</p>
+            <div class="w-4/5 flex items-center justify-center">
+                <div class="p-10 text-center">
+                    <h1 class="text-3xl font-bold mb-3" th:text="${title}"></h1>
+                    <p class="text-md font-medium">
+                        Welcome to the Doctor's Dashboard! This centralized platform is designed to streamline your
+                        workflow, improve patient care, and enhance your day-to-day productivity. From managing patient
+                        records and appointments to reviewing feedback and accessing important updates, everything you
+                        need is at your fingertips.
+                    </p>
                 </div>
             </div>
         </div>
