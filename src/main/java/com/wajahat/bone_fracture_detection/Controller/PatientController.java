@@ -12,6 +12,7 @@ public class PatientController {
     @GetMapping("/")
     public String patientDashboard(Model model) {
         model.addAttribute("title", "Patient Dashboard");
+        model.addAttribute("role", "ROLE_PATIENT");
         return "patient/home";
     }
 }
