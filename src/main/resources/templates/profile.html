@@ -1,0 +1,29 @@
+<html lang="en">
+
+<head th:replace="~{components/head :: head}"></head>
+
+<body class="bg-amber-600 bg-opacity-25 font-parkinsans">
+    <div class="flex flex-col min-h-screen">
+        <div class="flex flex-grow">
+            <div th:replace="~{components/sidebar :: sidebar}"></div>
+            <div class="w-4/5 flex-col w-full">
+                <div class="bg-amber-600 bg-opacity-25 p-6 border-b border-amber-600">
+                    <h1 class="text-2xl font-bold" th:text="${title}"></h1>
+                </div>
+                <div class="grid grid-cols-4 gap-4 p-10">
+                    <p class="text-xl font-semibold text-gray-700">Name:</p>
+                    <p class="text-xl font-medium text-gray-900 break-words" th:text="${name} ?: 'N/A'"></p>
+                    <p class="text-xl font-semibold text-gray-700">Username:</p>
+                    <p class="text-xl font-medium text-gray-900 break-words" th:text="${username} ?: 'N/A'"></p>
+                    <p class="text-xl font-semibold text-gray-700">Email:</p>
+                    <p class="text-xl font-medium text-gray-900 break-words" th:text="${email} ?: 'N/A'"></p>
+                    <p class="text-xl font-semibold text-gray-700">Role:</p>
+                    <p class="text-xl font-medium text-gray-900 break-words" th:text="${role} ? 'Doctor': 'Doctor'"></p>
+                </div>
+            </div>
+        </div>
+        <footer th:replace="~{components/footer :: footer}"></footer>
+    </div>
+</body>
+
+</html>

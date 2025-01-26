@@ -2,18 +2,24 @@
 
 <head th:replace="~{components/head :: head}"></head>
 
-<body class="bg-slate-300 font-parkinsans">
+<body class="bg-amber-600 bg-opacity-25 font-parkinsans">
     <div class="flex flex-col min-h-screen">
         <div class="flex flex-grow">
             <div th:replace="~{components/sidebar :: sidebar}"></div>
-            <div class="w-4/5 flex items-center justify-center">
-                <div class="p-10 text-center">
-                    <h1 class="text-3xl font-bold mb-3" th:text="${title}"></h1>
-                    <p class="text-md font-medium">
-                        Welcome to your personalized Patient Dashboard! This platform is designed to provide you with
-                        easy access to your health records, appointments, results, and feedback. Whether you're managing
-                        your medical journey or seeking health-related insights, everything you need is right here.
-                    </p>
+            <div class="w-4/5 flex flex-col w-full">
+                <div class="bg-amber-600 bg-opacity-25 p-6 border-b border-amber-600">
+                    <h1 class="text-2xl font-bold" th:text="${title}"></h1>
+                </div>
+                <div class="flex flex-grow items-center justify-center">
+                    <div class="p-10 text-center">
+                        <h1 class="text-3xl font-bold mb-3" th:text="${title}"></h1>
+                        <p class="text-md font-medium">
+                            Welcome to your personalized Patient Dashboard! This platform is designed to provide you
+                            with easy access to your health records, appointments, results, and feedback. Whether you're
+                            managing your medical journey or seeking health-related insights, everything you need is
+                            right here.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>

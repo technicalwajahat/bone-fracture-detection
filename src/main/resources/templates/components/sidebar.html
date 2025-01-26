@@ -5,30 +5,36 @@
     <nav>
         <ul>
             <li class="space-y-2" th:if="${role == 'ROLE_PATIENT'}">
+                <a href="/patient/"
+                    class="block px-4 py-2 bg-amber-600 bg-opacity-50 hover:bg-amber-700 active:bg-amber-700 transition duration-300 rounded-md">Home</a>
                 <a href="/patient/doctors"
-                    class="block px-4 py-2 bg-amber-600 hover:bg-amber-700 active:bg-amber-700 transition duration-300 rounded-md">Doctors</a>
+                    class="block px-4 py-2 bg-amber-600 bg-opacity-50 hover:bg-amber-700 active:bg-amber-700 transition duration-300 rounded-md">Doctors</a>
                 <a href="/patient/appointments"
-                    class="block px-4 py-2 bg-amber-600 hover:bg-amber-700 active:bg-amber-700 transition duration-300 rounded-md">Appointments</a>
+                    class="block px-4 py-2 bg-amber-600 bg-opacity-50 hover:bg-amber-700 active:bg-amber-700 transition duration-300 rounded-md">Appointments</a>
                 <a href="/patient/results"
-                    class="block px-4 py-2 bg-amber-600 hover:bg-amber-700 active:bg-amber-700 transition duration-300 rounded-md">Results</a>
+                    class="block px-4 py-2 bg-amber-600 bg-opacity-50 hover:bg-amber-700 active:bg-amber-700 transition duration-300 rounded-md">Results</a>
                 <a href="/patient/feedback"
-                    class="block px-4 py-2 bg-amber-600 hover:bg-amber-700 active:bg-amber-700 transition duration-300 rounded-md">Feedback</a>
+                    class="block px-4 py-2 bg-amber-600 bg-opacity-50 hover:bg-amber-700 active:bg-amber-700 transition duration-300 rounded-md">Feedback</a>
                 <a href="/patient/profile"
-                    class="block px-4 py-2 bg-amber-600 hover:bg-amber-700 active:bg-amber-700 transition duration-300 rounded-md">Profile</a>
+                    class="block px-4 py-2 bg-amber-600 bg-opacity-50 hover:bg-amber-700 active:bg-amber-700 transition duration-300 rounded-md">Profile</a>
                 <a href="/user/logout"
-                    class="block px-4 py-2 bg-amber-600 hover:bg-amber-700 active:bg-amber-700 transition duration-300 rounded-md">Logout</a>
+                    class="block px-4 py-2 bg-amber-600 bg-opacity-50 hover:bg-amber-700 active:bg-amber-700 transition duration-300 rounded-md">Logout</a>
             </li>
             <li class="space-y-2" th:if="${role == 'ROLE_DOCTOR'}">
+                <a href="/doctor/"
+                    class="block px-4 py-2 bg-amber-600 bg-opacity-50 hover:bg-amber-700 active:bg-amber-700 transition duration-300 rounded-md">
+                    Home
+                </a>
                 <a href="/doctor/appointments"
-                    class="block px-4 py-2 bg-amber-600 hover:bg-amber-700 active:bg-amber-700 transition duration-300 rounded-md">
+                    class="block px-4 py-2 bg-amber-600 bg-opacity-50 hover:bg-amber-700 active:bg-amber-700 transition duration-300 rounded-md">
                     Appointments
                 </a>
                 <a href="/doctor/profile"
-                    class="block px-4 py-2 bg-amber-600 hover:bg-amber-700 active:bg-amber-700 transition duration-300 rounded-md">
+                    class="block px-4 py-2 bg-amber-600 bg-opacity-50 hover:bg-amber-700 active:bg-amber-700 transition duration-300 rounded-md">
                     Profile
                 </a>
                 <a href="/user/logout"
-                    class="block px-4 py-2 bg-amber-600 hover:bg-amber-700 active:bg-amber-700 transition duration-300 rounded-md">
+                    class="block px-4 py-2 bg-amber-600 bg-opacity-50 hover:bg-amber-700 active:bg-amber-700 transition duration-300 rounded-md">
                     Logout
                 </a>
             </li>
