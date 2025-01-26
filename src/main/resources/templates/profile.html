@@ -1,24 +1,34 @@
+<!DOCTYPE html>
 <html lang="en">
 
-<head th:replace="~{components/head :: head}"></head>
+<head th:replace="~{components/head :: head}">
+    <link rel="stylesheet" href="output.css">
+</head>
 
 <body class="bg-amber-600 bg-opacity-25 font-parkinsans">
     <div class="flex flex-col min-h-screen">
         <div class="flex flex-grow">
             <div th:replace="~{components/sidebar :: sidebar}"></div>
-            <div class="w-4/5 flex-col w-full">
-                <div class="bg-amber-600 bg-opacity-25 p-6 border-b border-amber-600">
-                    <h1 class="text-2xl font-bold" th:text="${title}"></h1>
-                </div>
-                <div class="grid grid-cols-4 gap-4 p-10">
-                    <p class="text-xl font-semibold text-gray-700">Name:</p>
-                    <p class="text-xl font-medium text-gray-900 break-words" th:text="${name} ?: 'N/A'"></p>
-                    <p class="text-xl font-semibold text-gray-700">Username:</p>
-                    <p class="text-xl font-medium text-gray-900 break-words" th:text="${username} ?: 'N/A'"></p>
-                    <p class="text-xl font-semibold text-gray-700">Email:</p>
-                    <p class="text-xl font-medium text-gray-900 break-words" th:text="${email} ?: 'N/A'"></p>
-                    <p class="text-xl font-semibold text-gray-700">Role:</p>
-                    <p class="text-xl font-medium text-gray-900 break-words" th:text="${role} ? 'Doctor': 'Doctor'"></p>
+            <div class="w-4/5 flex flex-col">
+                <div th:replace="~{components/header :: header}"></div>
+                <div class="grid gap-4 p-10">
+                    <div class="px-5 py-4 bg-gray-800 bg-opacity-25 flex justify-between rounded-xl">
+                        <div class="text-xl font-bold">Name:</div>
+                        <div class="text-xl font-medium" th:text="${name}"></div>
+                    </div>
+                    <div class="px-5 py-4 bg-gray-800 bg-opacity-25 flex justify-between rounded-xl">
+                        <div class="text-xl font-bold">Username:</div>
+                        <div class="text-xl font-medium" th:text="${username}"></div>
+                    </div>
+                    <div class="px-5 py-4 bg-gray-800 bg-opacity-25 flex justify-between rounded-xl">
+                        <div class="text-xl font-bold">Email:</div>
+                        <div class="text-xl font-medium" th:text="${email}"></div>
+                    </div>
+                    <div class="px-5 py-4 bg-gray-800 bg-opacity-25 flex justify-between rounded-xl">
+                        <div class="text-xl font-bold">Role:</div>
+                        <div class="text-xl font-medium" th:text="${role == 'ROLE_DOCTOR'} ? 'Doctor' : 'Patient'">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

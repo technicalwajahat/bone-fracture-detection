@@ -1,12 +1,9 @@
 package com.wajahat.bone_fracture_detection.controller;
 
-import org.springframework.security.core.userdetails.User;
-
 import java.security.Principal;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
