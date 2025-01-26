@@ -1,3 +1,11 @@
+/**
+ * Project      :   bone_fracture_detection
+ * Developer    :   Wajahat Awan
+ * Date         :   27/01/2024
+ * Language     :   Java
+ * Framework    :   Spring Boot
+ */
+
 package com.wajahat.bone_fracture_detection.controller;
 
 import java.security.Principal;
@@ -34,7 +42,7 @@ public class PatientController {
         model.addAttribute("title", "Pateint Profile");
         model.addAttribute("name", currentUser.get().getName());
         model.addAttribute("email", currentUser.get().getEmail());
-        model.addAttribute("username", currentUser.get().getEmail());
+        model.addAttribute("username", currentUser.get().getUsername());
         model.addAttribute("role", currentUser.get().getRole().getRoleName());
 
         return "profile";
