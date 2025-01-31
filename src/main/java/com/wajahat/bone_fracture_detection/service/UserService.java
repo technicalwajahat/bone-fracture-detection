@@ -8,8 +8,10 @@
 
 package com.wajahat.bone_fracture_detection.service;
 
+import java.util.List;
 import java.util.Optional;
 
+import com.wajahat.bone_fracture_detection.entity.Doctor;
 import com.wajahat.bone_fracture_detection.entity.Users;
 
 public interface UserService {
@@ -21,4 +23,6 @@ public interface UserService {
     Users saveUser(Users user);
 
     Optional<Users> findByUsername(String username);
+
+    List<Doctor> getDoctors();
 }

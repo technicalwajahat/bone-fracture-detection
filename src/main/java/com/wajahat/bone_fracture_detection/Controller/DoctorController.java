@@ -35,7 +35,7 @@ public class DoctorController {
     }
 
     @GetMapping("/profile")
-    public String userPage(Principal principal, Model model) {
+    public String profile(Principal principal, Model model) {
 
         Optional<Users> currentUser = userService.findByUsername(principal.getName());
 

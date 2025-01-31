@@ -9,14 +9,17 @@
 package com.wajahat.bone_fracture_detection.controller;
 
 import java.security.Principal;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.wajahat.bone_fracture_detection.entity.Doctor;
 import com.wajahat.bone_fracture_detection.entity.Users;
 import com.wajahat.bone_fracture_detection.service.UserService;
 
@@ -27,15 +30,19 @@ public class PatientController {
     @Autowired
     private UserService userService;
 
+    @ModelAttribute
+    public void addCommonAttributes(Model model) {
+        model.addAttribute("role", "ROLE_PATIENT");
+    }
+
     @GetMapping("/")
     public String patientDashboard(Model model) {
         model.addAttribute("title", "Patient Dashboard");
-        model.addAttribute("role", "ROLE_PATIENT");
         return "patient/home";
     }
 
     @GetMapping("/profile")
-    public String userPage(Principal principal, Model model) {
+    public String profile(Principal principal, Model model) {
 
         Optional<Users> currentUser = userService.findByUsername(principal.getName());
 
@@ -45,6 +52,17 @@ public class PatientController {
         model.addAttribute("username", currentUser.get().getUsername());
         model.addAttribute("role", currentUser.get().getRole().getRoleName());
 
-        return "profile";
+        return "/profile";
+    }
+
+    @GetMapping("/doctors")
+    public String doctors(Model model) {
+
+        List<Doctor> doctors = userService.getDoctors();
+
+        model.addAttribute("title", "Doctors");
+        model.addAttribute("doctors", doctors);
+
+        return "patient/doctor";
     }
 }

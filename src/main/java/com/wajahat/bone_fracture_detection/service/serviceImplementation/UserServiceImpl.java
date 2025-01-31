@@ -8,6 +8,7 @@
 
 package com.wajahat.bone_fracture_detection.service.serviceImplementation;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<Users> findByUsername(String username) {
         return userRepository.findByUsername(username);
+    }
+
+    @Override
+    public List<Doctor> getDoctors() {
+        return doctorRepository.findAll();
     }
 
     @Override
