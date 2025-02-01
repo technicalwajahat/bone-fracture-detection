@@ -25,5 +25,4 @@ public class RoleServiceImpl implements RoleService {
     public Optional<Role> getRoleById(Long id) {
         return roleRepository.findById(id);
     }
-
 }

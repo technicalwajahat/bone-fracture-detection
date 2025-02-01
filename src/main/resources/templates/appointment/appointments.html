@@ -1,0 +1,43 @@
+<html>
+
+<head th:replace="~{components/head :: head}"></head>
+
+<body class="font-parkinsans">
+    <div class="flex flex-col min-h-screen">
+        <div class="flex flex-grow">
+            <div th:replace="~{components/sidebar :: sidebar}"></div>
+            <div class="w-4/5 flex flex-col">
+                <div th:replace="~{components/header :: header}"></div>
+                <div class="flex p-6">
+                    <table class="table-fixed border-separate border border-amber-500 w-full">
+                        <thead class="bg-amber-800 text-white">
+                            <tr class="text-left">
+                                <th class="border border-amber-600 px-4 py-2 w-[10%]">Sr No.</th>
+                                <th class="border border-amber-600 px-4 py-2 w-[70%]">Appointment Date</th>
+                                <th class="border border-amber-600 px-4 py-2 w-[10%]">Edit</th>
+                                <th class="border border-amber-600 px-4 py-2 w-[10%]">Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:if="${appointments.isEmpty()}">
+                                <td colspan="4" class="border border-amber-400 px-4 py-2 text-center">
+                                    No appointments found!
+                                </td>
+                            </tr>
+                            <tr th:each="appointment, stat : ${appointments}"
+                                th:class="${stat.index % 2 == 0} ? 'bg-amber-500 bg-opacity-25' : 'bg-white'">
+                                <td class="border border-amber-400 px-4 py-2" th:text="${stat.index + 1}"></td>
+                                <td class="border border-amber-400 px-4 py-2" th:text="${appointment.appointment_date}">
+                                <td class="border border-amber-400 px-4 py-2"></td>
+                                <td class="border border-amber-400 px-4 py-2"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <footer th:replace="~{components/footer :: footer}"></footer>
+    </div>
+</body>
+
+</html>

@@ -19,8 +19,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.wajahat.bone_fracture_detection.entity.Appointment;
 import com.wajahat.bone_fracture_detection.entity.Doctor;
 import com.wajahat.bone_fracture_detection.entity.Users;
+import com.wajahat.bone_fracture_detection.service.AppointmentService;
 import com.wajahat.bone_fracture_detection.service.UserService;
 
 @Controller
@@ -29,6 +31,9 @@ public class PatientController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private AppointmentService appointmentService;
 
     @ModelAttribute
     public void addCommonAttributes(Model model) {
@@ -64,5 +69,16 @@ public class PatientController {
         model.addAttribute("doctors", doctors);
 
         return "patient/doctor";
+    }
+
+    @GetMapping("/appointments")
+    public String appointment(Model model) {
+
+        List<Appointment> appointments = appointmentService.getAppointments();
+
+        model.addAttribute("title", "Appointments");
+        model.addAttribute("appointments", appointments);
+
+        return "appointment/appointments";
     }
 }
