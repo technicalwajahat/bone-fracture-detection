@@ -8,9 +8,10 @@
 
 package com.wajahat.bone_fracture_detection.repository;
 
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
-
 import com.wajahat.bone_fracture_detection.entity.Feedback;
 
 public interface FeedbackRepository extends JpaRepository<Feedback, Long> {
+    List<Feedback> findByDoctorId(Long doctorId);
 }

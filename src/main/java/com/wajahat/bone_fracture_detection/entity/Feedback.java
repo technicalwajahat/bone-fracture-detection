@@ -36,7 +36,7 @@ public class Feedback {
 
     @ManyToOne()
     @JoinColumn(name = "doctor_id")
-    private Doctor doctor_id;
+    private Doctor doctor;
 
     private String comments;
 }

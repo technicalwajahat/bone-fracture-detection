@@ -35,4 +35,8 @@ public class FeedbackServiceImpl implements FeedbackService {
         throw new UnsupportedOperationException("Unimplemented method 'getFeedback'");
     }
 
+    @Override
+    public List<Feedback> getFeedbacksByDoctorId(Long doctorId) {
+        return feedbackRepository.findByDoctorId(doctorId);
+    }
 }

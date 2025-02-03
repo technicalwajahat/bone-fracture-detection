@@ -65,9 +65,11 @@ public class DoctorController {
     }
 
     @GetMapping("/appointments")
-    public String appointment(Model model) {
+    public String appointment(Principal principal, Model model) {
 
-        List<Appointment> appointments = appointmentService.getAppointments();
+        Optional<Users> currentUser = userService.findByUsername(principal.getName());
+        Users user = currentUser.get();
+        List<Appointment> appointments = appointmentService.getAppointmentsByDoctorId(user.getId());
 
         model.addAttribute("title", "Appointments");
         model.addAttribute("appointments", appointments);
@@ -76,9 +78,11 @@ public class DoctorController {
     }
 
     @GetMapping("/feedbacks")
-    public String feedback(Model model) {
+    public String feedback(Principal principal, Model model) {
 
-        List<Feedback> feedbacks = feedbackService.getFeedbacks();
+        Optional<Users> currentUser = userService.findByUsername(principal.getName());
+        Users user = currentUser.get();
+        List<Feedback> feedbacks = feedbackService.getFeedbacksByDoctorId(user.getId());
 
         model.addAttribute("title", "Feedbacks");
         model.addAttribute("feedbacks", feedbacks);

@@ -71,7 +71,7 @@
                             <tr th:each="appointment, stat : ${appointments}"
                                 th:class="${stat.index % 2 == 0} ? 'bg-amber-500 bg-opacity-25' : 'bg-white'">
                                 <td class="border border-amber-400 px-4 py-2" th:text="${stat.index + 1}"></td>
-                                <td class="border border-amber-400 px-4 py-2" th:text="${appointment.patient_name}">
+                                <td class="border border-amber-400 px-4 py-2" th:text="${appointment.patientName}">
                                 </td>
                                 <td class="border border-amber-400 px-4 py-2" th:text="${appointment.appointmentDate}">
                                 </td>

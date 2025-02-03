@@ -33,7 +33,7 @@
                             <tr th:each="feedback, stat : ${feedbacks}"
                                 th:class="${stat.index % 2 == 0} ? 'bg-amber-500 bg-opacity-25' : 'bg-white'">
                                 <td class="border border-amber-400 px-4 py-2" th:text="${stat.index + 1}"></td>
-                                <td class="border border-amber-400 px-4 py-2" th:text="${feedback.doctor_id.user.name}">
+                                <td class="border border-amber-400 px-4 py-2" th:text="${feedback.doctor.user.name}">
                                 </td>
                                 <td class="border border-amber-400 px-4 py-2" th:text="${feedback.comments}"></td>
                                 <td class="border border-amber-400 px-4 py-2">
@@ -68,7 +68,7 @@
                             <tr th:each="feedback, stat : ${feedbacks}"
                                 th:class="${stat.index % 2 == 0} ? 'bg-amber-500 bg-opacity-25' : 'bg-white'">
                                 <td class="border border-amber-400 px-4 py-2" th:text="${stat.index + 1}"></td>
-                                <td class="border border-amber-400 px-4 py-2" th:text="${feedback.}">
+                                <td class="border border-amber-400 px-4 py-2" th:text="${feedback.comments}">
                                 </td>
                             </tr>
                         </tbody>

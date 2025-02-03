@@ -9,6 +9,8 @@ public interface AppointmentService {
 
     List<Appointment> getAppointments();
 
+    List<Appointment> getAppointmentsByDoctorId(Long doctorId);
+
     Appointment saveAppointment(Appointment appointment);
 
     Optional<Appointment> getAppointmentById(Long id);
