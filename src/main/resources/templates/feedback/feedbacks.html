@@ -9,37 +9,35 @@
             <div class="w-4/5 flex flex-col">
                 <div th:replace="~{components/header :: header}"></div>
 
-                <div th:if="${role == 'ROLE_PATIENT'}" class="p-8">
+                <div class="p-8" th:if="${role == 'ROLE_PATIENT'}">
                     <div class="float-end block my-6">
-                        <a th:href="@{/patient/appointments/create}"
-                            class="bg-amber-800 text-white font-medium px-10 py-2 rounded hover:bg-amber-700">Add
-                            New
+                        <a th:href="@{/patient/feedbacks/create}"
+                            class="bg-amber-800 text-white font-medium px-10 py-2 rounded hover:bg-amber-700">Add New
                         </a>
                     </div>
                     <table class="table-fixed border-separate border border-amber-500 w-full">
                         <thead class="bg-amber-800 text-white">
                             <tr class="text-left">
                                 <th class="border border-amber-600 px-4 py-2 w-[10%]">Sr No.</th>
-                                <th class="border border-amber-600 px-4 py-2 w-[50%]">Doctor Name</th>
-                                <th class="border border-amber-600 px-4 py-2 w-[30%]">Appointment Date</th>
+                                <th class="border border-amber-600 px-4 py-2 w-[30%]">Doctor Name</th>
+                                <th class="border border-amber-600 px-4 py-2 w-[50%]">Comments</th>
                                 <th class="border border-amber-600 px-4 py-2 w-[10%]">Delete</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:if="${appointments.isEmpty()}">
+                            <tr th:if="${feedbacks.isEmpty()}">
                                 <td colspan="4" class="border border-amber-400 px-4 py-2 text-center">
-                                    No appointments found!
+                                    No feedbacks found!
                                 </td>
                             </tr>
-                            <tr th:each="appointment, stat : ${appointments}"
+                            <tr th:each="feedback, stat : ${feedbacks}"
                                 th:class="${stat.index % 2 == 0} ? 'bg-amber-500 bg-opacity-25' : 'bg-white'">
                                 <td class="border border-amber-400 px-4 py-2" th:text="${stat.index + 1}"></td>
-                                <td class="border border-amber-400 px-4 py-2" th:text="${appointment.doctor.user.name}">
+                                <td class="border border-amber-400 px-4 py-2" th:text="${feedback.doctor_id.user.name}">
                                 </td>
-                                <td class="border border-amber-400 px-4 py-2" th:text="${appointment.appointmentDate}">
-                                </td>
+                                <td class="border border-amber-400 px-4 py-2" th:text="${feedback.comments}"></td>
                                 <td class="border border-amber-400 px-4 py-2">
-                                    <a th:href="@{/patient/appointments/{id}(id=${appointment.id})}">
+                                    <a th:href="@{/patient/feedbacks/{id}(id=${feedback.id})}">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                             class="size-6 cursor-pointer text-red-700">
                                             <path fill-rule="evenodd"
@@ -53,27 +51,24 @@
                     </table>
                 </div>
 
-                <div th:if="${role == 'ROLE_DOCTOR'}" class="p-8">
+                <div class="p-8" th:if="${role == 'ROLE_DOCTOR'}">
                     <table class="table-fixed border-separate border border-amber-500 w-full">
                         <thead class="bg-amber-800 text-white">
                             <tr class="text-left">
                                 <th class="border border-amber-600 px-4 py-2 w-[10%]">Sr No.</th>
-                                <th class="border border-amber-600 px-4 py-2 w-[50%]">Patient Name</th>
-                                <th class="border border-amber-600 px-4 py-2 w-[40%]">Appointment Date</th>
+                                <th class="border border-amber-600 px-4 py-2 w-[90%]">Comments</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:if="${appointments.isEmpty()}">
+                            <tr th:if="${feedbacks.isEmpty()}">
                                 <td colspan="4" class="border border-amber-400 px-4 py-2 text-center">
-                                    No appointments found!
+                                    No feedbacks found!
                                 </td>
                             </tr>
-                            <tr th:each="appointment, stat : ${appointments}"
+                            <tr th:each="feedback, stat : ${feedbacks}"
                                 th:class="${stat.index % 2 == 0} ? 'bg-amber-500 bg-opacity-25' : 'bg-white'">
                                 <td class="border border-amber-400 px-4 py-2" th:text="${stat.index + 1}"></td>
-                                <td class="border border-amber-400 px-4 py-2" th:text="${appointment.patient_name}">
-                                </td>
-                                <td class="border border-amber-400 px-4 py-2" th:text="${appointment.appointmentDate}">
+                                <td class="border border-amber-400 px-4 py-2" th:text="${feedback.}">
                                 </td>
                             </tr>
                         </tbody>

@@ -1,0 +1,50 @@
+<html>
+
+<head th:replace="~{components/head :: head}"></head>
+
+<body class="font-parkinsans">
+    <div class="flex flex-col min-h-screen">
+        <div class="flex flex-grow">
+            <div th:replace="~{components/sidebar :: sidebar}"></div>
+            <div class="w-4/5 flex flex-col">
+                <div th:replace="~{components/header :: header}"></div>
+                <form th:action="@{/patient/save-feedback}" method="POST">
+                    <div class="p-8">
+                        <div>
+                            <label for="doctor" class="block text-sm/6 font-bold text-gray-900">Doctor</label>
+                            <div class="mt-2">
+                                <select type="text" name="doctor_id" id="doctor" autocomplete="name"
+                                    class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-800 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-amber-600"
+                                    required>
+                                    <option value="0" selected disabled>Select Doctor</option>
+                                    <option th:each="doctor : ${doctors}" th:value="${doctor.user.id}"
+                                        th:text="${doctor.user.name}"></option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mt-4">
+                            <label for="comments" class="block text-sm/6 font-bold text-gray-900">Comments</label>
+                            <div class="mt-2">
+                                <textarea name="comments" id="comments" autocomplete="comments" rows="5"
+                                    placeholder="Add your comments about doctor"
+                                    class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-800 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-amber-600"
+                                    required></textarea>
+                            </div>
+                        </div>
+
+                        <div class="mt-6">
+                            <button type="submit"
+                                class="w-full rounded-md bg-amber-800 px-3 py-2 text-sm/6 font-semibold text-white shadow-sm hover:bg-amber-900">
+                                Add Feedback
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <footer th:replace="~{components/footer :: footer}"></footer>
+    </div>
+</body>
+
+</html>

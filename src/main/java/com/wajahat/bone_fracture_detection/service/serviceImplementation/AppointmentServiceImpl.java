@@ -23,7 +23,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 
     @Override
     public Appointment saveAppointment(Appointment appointment) {
-        throw new UnsupportedOperationException("Unimplemented method 'saveAppointment'");
+        return appointmentRepository.save(appointment);
     }
 
     @Override
@@ -31,4 +31,8 @@ public class AppointmentServiceImpl implements AppointmentService {
         throw new UnsupportedOperationException("Unimplemented method 'getAppointmentById'");
     }
 
+    @Override
+    public void deleteAppointment(Long id) {
+        appointmentRepository.deleteById(id);
+    }
 }

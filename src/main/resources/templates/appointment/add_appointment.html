@@ -1,0 +1,60 @@
+<html>
+
+<head th:replace="~{components/head :: head}"></head>
+
+<body class="font-parkinsans">
+    <div class="flex flex-col min-h-screen">
+        <div class="flex flex-grow">
+            <div th:replace="~{components/sidebar :: sidebar}"></div>
+            <div class="w-4/5 flex flex-col">
+                <div th:replace="~{components/header :: header}"></div>
+                <form th:action="@{/patient/save-appointment}" method="POST">
+                    <div class="p-8">
+                        <div>
+                            <label for="patient-name" class="block text-md font-bold text-gray-900">Patient</label>
+                            <div class="mt-2">
+                                <input type="text" name="patientName" id="patient-name" placeholder="Patient Name"
+                                    th:value="${patientName}"
+                                    class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-800 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-amber-600"
+                                    required readonly />
+                            </div>
+                        </div>
+
+                        <div class="mt-4">
+                            <label for="doctor" class="block text-md font-bold text-gray-900">Doctor</label>
+                            <div class="mt-2">
+                                <select type="text" name="doctor" id="doctor" autocomplete="name"
+                                    class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-800 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-amber-600"
+                                    required>
+                                    <option value="0" selected disabled>Select Doctor</option>
+                                    <option th:each="doctor : ${doctors}" th:value="${doctor.user.id}"
+                                        th:text="${doctor.user.name}"></option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mt-4">
+                            <label for="appointment-date" class="block text-md font-bold text-gray-900">Appointment
+                                Date</label>
+                            <div class="mt-2">
+                                <input type="date" name="appointmentDate" id="appointment-date" autocomplete="date"
+                                    class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-800 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-amber-600"
+                                    required />
+                            </div>
+                        </div>
+
+                        <div class="mt-6">
+                            <button type="submit"
+                                class="w-full rounded-md bg-amber-800 px-3 py-2 text-sm/6 font-semibold text-white shadow-sm hover:bg-amber-900">
+                                Book Appointment
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <footer th:replace="~{components/footer :: footer}"></footer>
+    </div>
+</body>
+
+</html>

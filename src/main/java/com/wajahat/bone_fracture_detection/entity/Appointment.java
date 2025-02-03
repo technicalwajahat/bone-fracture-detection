@@ -8,8 +8,6 @@
 
 package com.wajahat.bone_fracture_detection.entity;
 
-import java.time.LocalDateTime;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -37,8 +35,10 @@ public class Appointment {
     private Long Id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private Users users;
+    @JoinColumn(name = "doctor_id")
+    private Doctor doctor;
 
-    private LocalDateTime appointmentDate;
+    private String patientName;
+
+    private String appointmentDate;
 }

@@ -17,12 +17,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.wajahat.bone_fracture_detection.entity.Appointment;
 import com.wajahat.bone_fracture_detection.entity.Doctor;
+import com.wajahat.bone_fracture_detection.entity.Feedback;
 import com.wajahat.bone_fracture_detection.entity.Users;
 import com.wajahat.bone_fracture_detection.service.AppointmentService;
+import com.wajahat.bone_fracture_detection.service.FeedbackService;
 import com.wajahat.bone_fracture_detection.service.UserService;
 
 @Controller
@@ -34,6 +38,9 @@ public class PatientController {
 
     @Autowired
     private AppointmentService appointmentService;
+
+    @Autowired
+    private FeedbackService feedbackService;
 
     @ModelAttribute
     public void addCommonAttributes(Model model) {
@@ -80,5 +87,64 @@ public class PatientController {
         model.addAttribute("appointments", appointments);
 
         return "appointment/appointments";
+    }
+
+    @GetMapping("/appointments/create")
+    public String addAppointment(Principal principal, Model model) {
+
+        Optional<Users> currentUser = userService.findByUsername(principal.getName());
+        List<Doctor> doctors = userService.getDoctors();
+
+        model.addAttribute("patientName", currentUser.get().getName());
+        model.addAttribute("doctors", doctors);
+        model.addAttribute("title", "Book Appointment");
+
+        return "appointment/add_appointment";
+    }
+
+    @PostMapping("/save-appointment")
+    public String bookAppointment(@ModelAttribute Appointment appointment) {
+        appointmentService.saveAppointment(appointment);
+        return "redirect:/patient/appointments";
+    }
+
+    @GetMapping("/appointments/{id}")
+    public String deleteAppointment(@PathVariable("id") Long id) {
+        appointmentService.deleteAppointment(id);
+        return "redirect:/patient/appointments";
+    }
+
+    @GetMapping("/feedbacks")
+    public String feedback(Model model) {
+
+        List<Feedback> feedbacks = feedbackService.getFeedbacks();
+
+        model.addAttribute("title", "Feedbacks");
+        model.addAttribute("feedbacks", feedbacks);
+
+        return "feedback/feedbacks";
+    }
+
+    @GetMapping("/feedbacks/create")
+    public String addFeedback(Principal principal, Model model) {
+
+        List<Doctor> doctors = userService.getDoctors();
+
+        model.addAttribute("doctors", doctors);
+        model.addAttribute("title", "Add Feedback");
+
+        return "feedback/add_feedback";
+    }
+
+    @PostMapping("/save-feedback")
+    public String bookFeedback(@ModelAttribute Feedback feedback) {
+        feedbackService.addFeedback(feedback);
+        return "redirect:/patient/feedbacks";
+    }
+
+    @GetMapping("/feedbacks/{id}")
+    public String deleteFeedback(@PathVariable("id") Long id) {
+        feedbackService.deleteFeedback(id);
+        return "redirect:/patient/feedbacks";
     }
 }
